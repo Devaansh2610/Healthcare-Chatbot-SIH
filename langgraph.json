@@ -1,0 +1,8 @@
+{
+  "graphs": {
+    "default": "src.BOT.workflow.graph:app"
+  },
+  "dependencies": [
+    "."
+  ]
+}

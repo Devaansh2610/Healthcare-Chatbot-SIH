@@ -1,0 +1,8 @@
+{
+    "mcpServers": {
+        "api_connector": {
+            "url": "http://localhost:8010/mcp",
+            "transport": "streamable_http"
+        }
+    }
+}

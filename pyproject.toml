@@ -4,4 +4,17 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "fastmcp>=2.12.2",
+    "httpx",
+    "langchain>=0.3.27",
+    "langchain-core>=0.3.75",
+    "langchain-groq>=0.3.7",
+    "langchain-mcp-adapters>=0.1.9",
+    "langgraph>=0.2.50",
+    "langgraph-api>=0.4.11",
+    "langgraph-cli>=0.2.50",
+    "mcp[cli]>=1.13.1",
+    "pip>=25.2",
+    "typing-extensions>=4.15.0",
+]
