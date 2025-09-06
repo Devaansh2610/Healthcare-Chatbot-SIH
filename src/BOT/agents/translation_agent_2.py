@@ -15,9 +15,17 @@ def translation_agent_2(state: AgentState):
     
     print("---TRANSLATION AGENT 2---")
     
+    response = state.get('response', '')
+    original_language = state.get('original_language', 'English')
+    
+    print(f"Response to translate: {response[:100]}...")
+    print(f"Target language: {original_language}")
+    
     prompt = ChatPromptTemplate.from_messages([("system", "Translate the following text to {language}. Just return the translated text and nothing else."), ("human", "{text}")])
     chain = prompt | llm
-    result = chain.invoke({"text": state['response'], "language": state['original_language']})
+    result = chain.invoke({"text": response, "language": original_language})
     translated_response = result.content
+    
+    print(f"Translated response: {translated_response[:100]}...")
     
     return {"response": translated_response}

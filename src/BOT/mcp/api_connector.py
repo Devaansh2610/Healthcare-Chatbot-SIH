@@ -22,7 +22,7 @@ mcp = FastMCP(name="api_connector", host="0.0.0.0", port=8010)
 @mcp.tool()
 def vector_db_query(query: str) -> dict:
     """
-    Query the local FastAPI vector DB endpoint.
+    Query the local FastAPI server , for health guidlines related queries , anything related to health guidelines 
     """
     response = httpx.get(API_HOST, params={"q": query})
     return response.json()
@@ -66,11 +66,11 @@ def vector_db_query(query: str) -> dict:
 @mcp.tool()
 def symptom_checker_tool(symptoms: str) -> Dict[str, Any]:
     """
-    Symptom Checker MCP Tool (LLM wrapper).
+    When 
     Dynamically analyzes symptoms using the LLM.
-
+    Use tool when user is talking anything about if they have any symotoms.
     Args:
-        symptoms: Free-text symptoms description, e.g. "I have sore throat and fever".
+        symptoms: Free-text symptoms description.
     """
 
     if not symptoms or not symptoms.strip():

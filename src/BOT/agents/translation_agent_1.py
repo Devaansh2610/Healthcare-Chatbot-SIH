@@ -14,7 +14,20 @@ def translation_agent_1(state: AgentState):
 
     print("---TRANSLATION AGENT 1---")
     
-    query = state['messages'][-1]['content']
+    # Get the last message content properly
+    last_message = state['messages'][-1]
+    if hasattr(last_message, 'content'):
+        query = last_message.content
+    elif isinstance(last_message, dict):
+        # Handle dictionary format
+        query = last_message.get('content', str(last_message))
+    elif isinstance(last_message, tuple):
+        # Handle tuple format (role, content)
+        query = last_message[1]
+    else:
+        query = str(last_message)
+    
+    print(f"Original query: {query}")
     
     # Detect language
     lang_prompt = ChatPromptTemplate.from_messages([("system", "Detect the language of the following text. Just return the language name and nothing else."), ("human", "{query}")])
@@ -27,5 +40,8 @@ def translation_agent_1(state: AgentState):
     trans_chain = trans_prompt | llm
     trans_result = trans_chain.invoke({"query": query})
     translated_query = trans_result.content
+    
+    print(f"Translated query: {translated_query}")
+    print(f"Original language: {original_language}")
     
     return {"query": translated_query, "original_language": original_language}
